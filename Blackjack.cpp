@@ -57,6 +57,14 @@ int main()
         {
             pCards[1] = pAceLogic();
         }
+        if (dCards[0] == 1)
+        {
+            dCards[0] = dAceLogic(getTotal(dCards));
+        }
+        if (dCards[1] == 1)
+        {
+            dCards[1] = dAceLogic(getTotal(dCards));
+        }
         
         //std::cout << "Player total: " << getTotal(pCards) << std::endl;
 
@@ -181,11 +189,13 @@ Deck::Deck()
     };
 };
 
+//getter for int* cards
 int* Deck::getCards()
 {
     return cards;
 }
 
+//shuffles deck by swapping every card with a random card
 void Deck::shuffle()
 {
     for(int i = 0; i < 52; i++)
@@ -196,6 +206,7 @@ void Deck::shuffle()
     //std::cout << "Shuffled deck\n\n"; 
 }
 
+//prints cards
 void Deck::printCards()
 {
     for(int i = 0; i < 52; i++)
@@ -205,6 +216,7 @@ void Deck::printCards()
     std::cout << std::endl;
 }
 
+//draws a card from the deck by returning the first card and cycling the deck
 int Deck::drawCard()
 {
     int card = cards[0];
@@ -220,6 +232,7 @@ int Deck::drawCard()
     return card;
 }
 
+//gets sum of vector
 int getTotal(std::vector<int> cards)
 {
     int total = 0;
@@ -230,6 +243,7 @@ int getTotal(std::vector<int> cards)
     return total;
 }
 
+//user inputs value of ace
 int pAceLogic()
 {
     std::string ace = "";
@@ -242,6 +256,7 @@ int pAceLogic()
     return (ace == "1") ? 1 : 11;
 }
 
+//returns 11 if the dealer doesn't bust as a result
 int dAceLogic(int dTotal)
 {
     if (dTotal > 21)
